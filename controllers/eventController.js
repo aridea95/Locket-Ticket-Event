@@ -4,10 +4,9 @@ const Ticket = require("../models/ticket");
 class eventController {
     static async getEvent(req, res, next) {
         try {
-            console.log('ini lagi error');
             let result = await Event
                 .find()
-                .populate({path: 'ticket'})
+                .populate({path: 'ticketCategory'})
 
             res.status(200).json({
                 success: true,
@@ -22,7 +21,7 @@ class eventController {
     static async createEvent (req, res, next){
         try {
             let obj = {};
-            const { title, info, schedule, location } = req.body;
+            const { title, info, schedule,location } = req.body;
             if (title) obj.title = title;
             if (info) obj.info = info;
             if (schedule) obj.schedule = schedule;

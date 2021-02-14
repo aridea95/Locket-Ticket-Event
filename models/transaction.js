@@ -1,7 +1,12 @@
 const mongoose =  require('mongoose');
+const uuid = require("node-uuid");
 const { Schema } = mongoose;
 
 const transactionSchema = new Schema({
+    id: {
+        type: String,
+        default: uuid.v1
+    },
     fullName: {
         type: String,
         required: [true, 'Please enter your Full Name.']
@@ -20,7 +25,8 @@ const transactionSchema = new Schema({
     },
     orderTicket: [{
         ticketId: { type: Schema.Types.ObjectId, ref: 'Ticket'},
-        quantity: { type: Number }
+        quantity: { type: Number },
+        price: { type: Number }
     }]
 })
 

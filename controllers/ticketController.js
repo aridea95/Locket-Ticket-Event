@@ -24,19 +24,35 @@ class ticketController {
             let eventId = req.params.eventId;
             let obj = {};
             const { ticketType, quota, price } = req.body;
-            if (eventId) obj.eventTitle = eventId 
+            if (eventId) obj.eventTitle = eventId
             if (ticketType) obj.ticketType = ticketType;
             if (quota) obj.quota = quota;
             if (price) obj.price = price;
             console.log(obj)
 
-            let result = await Ticket.findOneAndUpdate({_id:mongoose.Types.ObjectId()}, obj, {
-                new: true,
-                upsert: true, // create the data if not exist
-                runValidators: true,
-                setDefaultsOnInsert: true, // set default value based on models
-                populate: {path: "event"}
+            // let newTicket = new Ticket({
+            //     ticketType: ticketType,
+            //     quota: quota,
+            //     price: price
+            // });
+            // newTicket.save().then(event => {
+            //     Ticket
+            //         .populate(newTicket, { path: 'event' })
+            //         .then(ticket => {
+            //             res.json({
+            //                 msg: "Iki naon?",
+            //                 ticket
+            //             })
+            //     })
+            // })
+
+            let result = await Ticket.create(obj)
+            let ticketId = result._id
+
+            await Event.findByIdAndUpdate(eventId, {$push: {
+            ticketCategory: ticketId}
             })
+
             res.status(200).json({
                 success: true,
                 message: "Ticket has been created",

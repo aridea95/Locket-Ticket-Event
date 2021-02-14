@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
+const uuid = require("node-uuid");
 const { Schema } = mongoose;
 
 const eventSchema = new Schema({
+    id: {
+        type: String,
+        default: uuid.v1
+    },
     title: {
         type: String,
         required: [true, 'Please input the Title of the Event']

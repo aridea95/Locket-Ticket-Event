@@ -3,11 +3,6 @@ const Ticket = require("../models/ticket");
 const Event = require("../models/event");
 const mongoose = require("mongoose")
 
-// Customer will be able to make transaction to purchase ticket event
-// Customer can purchase ticket event many times
-// For each transaction, customer only can purchase ticket within same event
-// Within one transaction, customer can purchase more than 1 ticket type, and more than 1 qty per ticket type
-
 class transactionController {
     static async getTransaction (req, res, next) {
         try {
@@ -30,12 +25,12 @@ class transactionController {
             const { fullName, email, city, mobileNumber, orderTicket } = req.body;
             
             //validate
-            let ticketIds = orderTicket.map(el => mongoose.Types.ObjectId(el.ticketId))
-            let ticketData =await Ticket.find({_id: ticketIds})
+            let eventIds = orderTicket.map(el => mongoose.Types.ObjectId(el.eventId))
+            let eventData = await Ticket.find({_id: eventIds})
             .select('eventTitle');
 
-            //
-            let checkEvent = ticketData.every( (val, i, arr) => val === arr[0] )
+            //Check the transaction.
+            let checkEvent = eventData.every( (val, i, arr) => val === arr[0] )
             if(!checkEvent){
                 return res.send('Cannot purchase ticket of different Event.')
             }
@@ -46,11 +41,21 @@ class transactionController {
                     let ticket = await Ticket.findById(data.ticketId)
 
                     ticket.quota -= data.quantity
-                    
+
                     await ticket.save()
                  }
             }
             res.send(data)
+
+            // const totalPrice = await Transaction.create(req.body)
+            // if (totalPrice) {
+            //     for (let totalPrice of orderTicket) {
+            //         let ticket = await Ticket.findById(totalPrice.ticketId)
+
+            //         ticket.price * data.quantity
+            //     }
+            // }
+
         } catch (error) {
             next(error)
         }
