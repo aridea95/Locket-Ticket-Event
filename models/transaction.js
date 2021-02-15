@@ -20,13 +20,16 @@ const transactionSchema = new Schema({
         required: [true, 'Please enter the City.']
     },
     mobileNumber: {
-        type: Number,
+        type: String,
         required: [true, 'Please enter your Mobile Number.']
     },
     orderTicket: [{
         ticketId: { type: Schema.Types.ObjectId, ref: 'Ticket'},
         quantity: { type: Number },
-        price: { type: Number }
+    }],
+    Total: [{
+        ticketId: { type: Schema.Types.ObjectId, ref: 'Ticket'},
+        totalPrice: { type: Number }
     }]
 })
 

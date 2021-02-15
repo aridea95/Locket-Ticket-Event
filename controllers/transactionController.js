@@ -22,40 +22,37 @@ class transactionController {
 
     static async addToTransaction (req, res, next) {
         try {
+            // let eventId = req.params.eventId;
             const { fullName, email, city, mobileNumber, orderTicket } = req.body;
-            
-            //validate
-            let eventIds = orderTicket.map(el => mongoose.Types.ObjectId(el.eventId))
-            let eventData = await Ticket.find({_id: eventIds})
-            .select('eventTitle');
 
-            //Check the transaction.
-            let checkEvent = eventData.every( (val, i, arr) => val === arr[0] )
+
+            // validate
+            let ticketIds = orderTicket.map(el => mongoose.Types.ObjectId(el.ticketId))
+            let ticketData = await Ticket.find({ _id: ticketIds })
+                .populate({ path: 'eventTitle' })
+            console.log(ticketData, '-data Ticket');
+
+            // Check the transaction.
+            let checkEvent = ticketData.every(
+                (val, i, arr) => val === arr[0]
+                )
+            console.log(checkEvent, '-check event');
             if(!checkEvent){
                 return res.send('Cannot purchase ticket of different Event.')
             }
 
             const data = await Transaction.create(req.body)
+            console.log(data, '-data yang diterima oleh mongoDB');
             if (data) {
                 for (let data of orderTicket) {
                     let ticket = await Ticket.findById(data.ticketId)
 
                     ticket.quota -= data.quantity
-
+                    
                     await ticket.save()
                  }
             }
             res.send(data)
-
-            // const totalPrice = await Transaction.create(req.body)
-            // if (totalPrice) {
-            //     for (let totalPrice of orderTicket) {
-            //         let ticket = await Ticket.findById(totalPrice.ticketId)
-
-            //         ticket.price * data.quantity
-            //     }
-            // }
-
         } catch (error) {
             next(error)
         }
