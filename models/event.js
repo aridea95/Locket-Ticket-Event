@@ -22,7 +22,7 @@ const eventSchema = new Schema({
     },
     location: {
         type: String,
-        // required: true
+        required: true
     }
 });
 

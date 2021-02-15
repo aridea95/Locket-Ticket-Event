@@ -6,7 +6,7 @@ This is a Locket Ticket Event Online so the user can purchase the ticket with th
 
 ## Database Schema
 This project uses NoSql database, mongoDB.
-![Database Scheme](https://res.cloudinary.com/drqvopuni/image/upload/v1613360801/Database_Schema_btbrqh.png)
+![Database Scheme](https://res.cloudinary.com/drqvopuni/image/upload/v1613405888/2021-02-15_at_23-16-46_dpx8tq.png)
 
 ## MongoDB Collection
 
@@ -19,7 +19,7 @@ You can find full data of mongoDB collection in screenshot
 ![Sample](https://res.cloudinary.com/drqvopuni/image/upload/v1613357442/Ticket_Database_qlfgyj.png)
 
 - Transaction Collection
-![Sample](https://res.cloudinary.com/drqvopuni/image/upload/v1613357443/Transaction_Database_x9tukz.png)
+![Sample](https://res.cloudinary.com/drqvopuni/image/upload/v1613405975/2021-02-15_at_23-18-36_xtlzuc.png)
 
 
 ## Installation Step
@@ -35,6 +35,7 @@ $ npm i/install or yarn install -y
 ```
 $ npm run dev 
 ```
+
 ## How it works
 
 Here is the full guide and response of the API on what feature you can apply.
