@@ -25,7 +25,7 @@ You can find full data of mongoDB collection in screenshot
 ## Installation Step
 - First you need to clone the repository master from Github, for clone the repository copy the link from github, and in the terminal use :
 ```
-$ git clone https://github.com/aridea95/Locket-Ticket-Event.git.
+$ git clone https://github.com/aridea95/Locket-Ticket-Event.git
 ```
 - after finish clone the repository you have to install the dependecies, you can install all the dependecies for this app by using :
 ```
