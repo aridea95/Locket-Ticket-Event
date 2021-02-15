@@ -8,11 +8,10 @@ class transactionController {
         try {
             let result = await Transaction
                 .find()
-                // .populate(['ticket'])
 
             res.status(200).json({
                 success: true,
-                message: "Show all Purchase list.",
+                message: "Show all Transaction list.",
                 data: result
             });
         } catch (err) {
@@ -22,37 +21,51 @@ class transactionController {
 
     static async addToTransaction (req, res, next) {
         try {
-            // let eventId = req.params.eventId;
-            const { fullName, email, city, mobileNumber, orderTicket } = req.body;
+            const { eventId } = req.params;
+            let { fullName, email, city, mobileNumber, orderTicket } = req.body;
 
 
-            // validate
-            let ticketIds = orderTicket.map(el => mongoose.Types.ObjectId(el.ticketId))
+            // validate the transaction.
+            let ticketIds = orderTicket.map(el => el.ticketId)
+            
             let ticketData = await Ticket.find({ _id: ticketIds })
-                .populate({ path: 'eventTitle' })
-            console.log(ticketData, '-data Ticket');
 
-            // Check the transaction.
             let checkEvent = ticketData.every(
-                (val, i, arr) => val === arr[0]
+                (val) => val.eventTitle == eventId
                 )
-            console.log(checkEvent, '-check event');
+
             if(!checkEvent){
-                return res.send('Cannot purchase ticket of different Event.')
+                return res.send('Cannot purchase ticket for different Event.')
             }
 
-            const data = await Transaction.create(req.body)
-            console.log(data, '-data yang diterima oleh mongoDB');
+            let data = {};
+            data.fullName = fullName;
+            data.email = email;
+            data.city = city;
+            data.mobileNumber = mobileNumber;
+            data.orderTicket = orderTicket;
+            data.total = 0;
+
             if (data) {
-                for (let data of orderTicket) {
-                    let ticket = await Ticket.findById(data.ticketId)
+                for (let el of orderTicket) {
+                    let ticket = await Ticket.findById(el.ticketId)
 
-                    ticket.quota -= data.quantity
-                    
-                    await ticket.save()
-                 }
+                    if (ticket.quota >= el.quantity){
+                        
+                        ticket.quota -= el.quantity
+                        
+                        await ticket.save()
+
+                        data.total += (ticket.price * el.quantity)
+                    }
+                    else {
+                        res.send('Insufficient Ticket');
+                    }
+                }
             }
+            const transactions = await Transaction.create(data)
             res.send(data)
+
         } catch (error) {
             next(error)
         }

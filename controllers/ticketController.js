@@ -30,22 +30,6 @@ class ticketController {
             if (price) obj.price = price;
             console.log(obj)
 
-            // let newTicket = new Ticket({
-            //     ticketType: ticketType,
-            //     quota: quota,
-            //     price: price
-            // });
-            // newTicket.save().then(event => {
-            //     Ticket
-            //         .populate(newTicket, { path: 'event' })
-            //         .then(ticket => {
-            //             res.json({
-            //                 msg: "Iki naon?",
-            //                 ticket
-            //             })
-            //     })
-            // })
-
             let result = await Ticket.create(obj)
             let ticketId = result._id
 

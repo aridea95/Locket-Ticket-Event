@@ -13,7 +13,9 @@ const transactionSchema = new Schema({
     },
     email: {
         type: String,
-        required: [true, 'Please enter your email address.']
+        required: [true, 'Please enter your email!'],
+        lowercase: true,
+        match: [/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/, `Email format is incorrect!`]
     },
     city: {
         type: String,
@@ -27,10 +29,9 @@ const transactionSchema = new Schema({
         ticketId: { type: Schema.Types.ObjectId, ref: 'Ticket'},
         quantity: { type: Number },
     }],
-    Total: [{
-        ticketId: { type: Schema.Types.ObjectId, ref: 'Ticket'},
-        totalPrice: { type: Number }
-    }]
+    total: {
+        type: Number
+    }
 })
 
 module.exports = mongoose.model('Transaction', transactionSchema)

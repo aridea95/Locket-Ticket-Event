@@ -71,24 +71,41 @@ Give a response of success status and created event's name will be stored.
 
 **Create Ticket**
 
+- input the event Data
+
 ![Create Ticket Req](https://res.cloudinary.com/drqvopuni/image/upload/v1613364018/2021-02-15_at_11-38-47_jqpgf4.png)
+
+- Data event has been created
 ![Create Ticket Res](https://res.cloudinary.com/drqvopuni/image/upload/v1613364018/2021-02-15_at_11-39-07_pwgahj.png)
 
 Give a response of success status and created ticket's name and eventId  will be stored.
 
 **Get All Event**
 
-![Get all grouped events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-55-28_plfaj5.png)
-![Get all grouped events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-55-58_gnqxhy.png)
-![Get all grouped events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-56-18_duyl07.png)
-![Get all grouped events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-56-35_jmcx0s.png)
-![Get all grouped events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365464/2021-02-15_at_12-01-38_h5ovj7.png)
-![Get all grouped events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365452/2021-02-15_at_12-02-37_jnnlcr.png)
+Give a response of success status and all events.
 
-Give a response of success status and all events in group
+![Get all events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-55-28_plfaj5.png)
+![Get all events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-55-58_gnqxhy.png)
+![Get all events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-56-18_duyl07.png)
+![Get all events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365451/2021-02-15_at_11-56-35_jmcx0s.png)
+![Get all events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365464/2021-02-15_at_12-01-38_h5ovj7.png)
+![Get all events](https://res.cloudinary.com/drqvopuni/image/upload/v1613365452/2021-02-15_at_12-02-37_jnnlcr.png)
 
 **Create Transaction**
 
+Create transaction for the same ticket event with req and res.
+
+![Create Transaction](https://res.cloudinary.com/drqvopuni/image/upload/v1613403566/2021-02-15_at_21-29-37_ruu6j9.png)
+![Create Transaction](https://res.cloudinary.com/drqvopuni/image/upload/v1613403566/2021-02-15_at_21-30-10_fv4ryd.png)
+![Create Transaction](https://res.cloudinary.com/drqvopuni/image/upload/v1613403566/2021-02-15_at_22-12-23_bftrcz.png)
+![Create Transaction](https://res.cloudinary.com/drqvopuni/image/upload/v1613403566/2021-02-15_at_22-13-07_fl4pgv.png)
+
+**Get All Transaction**
+
+Give a response of success status and all events.
+
+![Get all transaction](https://res.cloudinary.com/drqvopuni/image/upload/v1613403566/2021-02-15_at_22-12-23_bftrcz.png)
+![Get all transaction](https://res.cloudinary.com/drqvopuni/image/upload/v1613403566/2021-02-15_at_22-13-07_fl4pgv.png)
 
 ## Backend Dependencies
 
