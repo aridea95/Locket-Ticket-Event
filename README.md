@@ -6,9 +6,12 @@ This is a Locket Ticket Event Online so the user can purchase the ticket with th
 
 ## Database Schema
 This project uses NoSql database, mongoDB.
-![Database Scheme](https://res.cloudinary.com/drqvopuni/image/upload/v1613359426/Database_Schema_aqnxly.png)
+![Database Scheme](https://res.cloudinary.com/drqvopuni/image/upload/v1613360801/Database_Schema_btbrqh.png)
 
 ## MongoDB Collection
+
+You can find full data of mongoDB collection in screenshot
+
 - Event Collection
 ![Sample](https://res.cloudinary.com/drqvopuni/image/upload/v1613357442/Event_Database_zwyqwm.png)
 - Ticket Collection
